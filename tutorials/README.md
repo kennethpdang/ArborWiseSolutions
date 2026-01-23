@@ -9,15 +9,175 @@ This technology stack is very similar to the MERN stack and it's helpful for us 
 ![NNEP Tech Stack Banner](../readme_images/NNEP%20Tech%20Stack%20Banner.png)
 
 ### Understanding Terminologies
-In today's programming landscape, sometimes people use the words "modules", "libraries", and "frameworks" loosely without a rigorous definition for what they are. The following table will help us simplify the difference between the terms. Imagine that we are in a workshop. Then we would have the following:
+In today's programming landscape, sometimes people use the words "modules", "packages", "libraries" and "frameworks" loosely without a rigorous definition for what they are. The following table will help us simplify the difference between the terms. Imagine we are dealing with Legos. We first deal with the terminologies of "packages" and "modules" which deal with distribution and loading, and then we talk about "libraries" and "frameworks" which deal with flow and control (we are strictly talking in the Javascript world):
 
-| Term | Workshop Analogy | What it Means | Examples
-|---|---|---|---|
-| Module | A tool *attachment* or a small labeled box of related tools. | A file or small unit grouping related code. | `utils/date.js` |
-| Library | A shelf of specialized tools that we use. Or a kit of tool attachments. A library usually consists of many *modules* | Cell B3 | asdf | `import * as THREE from "three";` (we are basically importing the THREE module from the three.js library) |
-| Framework | A jig/workbench with rules: it tells you where parts go (router table, assembly line station) | It's a structure that calls your code in a defined pattern. | `Next.js` |
+| Term | Lego Analogy | What it Means | Examples | Source |
+|---|---|---|---|---|
+| Package | A LEGO® box that you buy from a store. It has a label (package.json) that references what is inside of it. The box of legos is how it gets delivered to you. | A file or directory described by a `package.json` file. This package can contain many modules, but does not necessarily have to (e.g. CLI tools). | `react`, `loadash`, `express`, `d3` (you can install these via node package manager) | [NPM Docs](https://docs.npmjs.com/about-packages-and-modules): A package is a file or directory that is described by a package.json file. A package must contain a package.json file in order to be published to the npm registry. |
+| Module | An individual LEGO® brick or a pre-connected set of bricks that snaps into your build. It's the actual piece you use. Sometimes it can come with instructions. | Anything that can be loaded by `require()` or `import` statements. | This is an example `import React from 'react';` — here `react` is used as a module. | [NPM Docs](https://docs.npmjs.com/about-packages-and-modules): A module is any file or directory in the node_modules directory that can be loaded by the Node.js require() or import syntax. (This is a bit restrictive as modules don't necessarily have to be in the `node_modules` folder. You can create a local file outside `node_modules` and import it as a module into another file.) |
 
-React.js is a library, but Next.js is a framework. 
+As we see above, something can be both a package and a module at the same time. For example, `react` is a package (it is distributed as a packaged), but it's consumed as a module (using `import` or `require()` statements). As we can see, "packages" and "modules" deal with loading and distributing.
+
+| Term | Lego Analogy | What it Means | Examples | Source |
+|---|---|---|---|---|
+| Library | This is a box of LEGO® bricks without any particular instructions. You can decide how you want to use it and include it in your project. | `react`, `jQuery`, `D3.js` | This is popularized by Martin Fowler's *Inversion of Control* concept in 2004. |
+| Framework |  This is a box of LEGO® bricks **with** instructions. It might say something like put your peice here on line 47. The set dictates the structure. | A structured environment that calls your code at predetermined points. The framework controls the application flow. | `Next.js`, `Angular`, `Express`, `Django` | This is popularized by Martin Fowler's *Inversion of Control* concept in 2004. |
+
+As we can see above, a "libraries" and "frameworks" have to deal with how the flow and control of the application works. With libraries, you can call them whenever you want. With frameworks, there is an expected way to fill in the blank. It's expecting something from you.
+
+*Note, sometimes a package doesn't have import statements, but installs other packages (sub-packages). The reason for this is because we don't necessarily one a huge/giant file all the time. Here are two examples:
+
+This one deals with the [d3.js library](https://d3js.org/) which is helpful is making iteractive data visuals like charts and graphs:
+```
+d3 (PACKAGE)
+├── package.json (lists dependencies)
+│
+├── depends on → d3-selection (SUB-PACKAGE, has its own package.json)
+├── depends on → d3-scale (SUB-PACKAGE, has its own package.json)
+├── depends on → d3-array (SUB-PACKAGE, has its own package.json)
+├── depends on → d3-axis (SUB-PACKAGE, has its own package.json)
+└── ... 30+ more sub-packages
+```
+This one deals with the frontend UI/UX framework called [Angular 2](https://angular.dev/):
+```
+@angular/core    (PACKAGE) ← Always needed
+@angular/common  (PACKAGE) ← Common directives like ngIf, ngFor
+@angular/router  (PACKAGE) ← Only if you need routing
+@angular/forms   (PACKAGE) ← Only if you need forms
+@angular/http    (PACKAGE) ← Only if you need HTTP calls
+```
+
+*Also note: Sometimes there are technologies like Vue.js that can operate as both a library and a framework. You can build full SPA applications with Vue.js (it calls your lifecycle hooks (`mounted`, `created`, etc.), you don't call it). You can also use it as a library though. See more examples below:
+
+`Vue.js` As a Framework:
+```html
+// main.js - Vue takes over
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+
+createApp(App)
+  .use(router)  // Vue controls routing
+  .use(store)   // Vue controls state
+  .mount('#app')  // Vue owns the entire page
+```
+
+`Vue.js` as a Library:
+```html
+<!-- Existing page, not built with Vue -->
+<html>
+<head>
+  <title>My Existing Website</title>
+</head>
+<body>
+  <header>Regular HTML header</header>
+  
+  <main>
+    <p>Regular HTML content...</p>
+    
+    <!-- Just THIS part uses Vue -->
+    <div id="feedback-widget"></div>
+    
+    <p>More regular HTML...</p>
+  </main>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // You decide when and where to use Vue
+    const { createApp, ref } = Vue
+    
+    createApp({
+      setup() {
+        const rating = ref(0)
+        const submitted = ref(false)
+        
+        const submit = () => {
+          fetch('/api/feedback', {
+            method: 'POST',
+            body: JSON.stringify({ rating: rating.value })
+          })
+          submitted.value = true
+        }
+        
+        return { rating, submitted, submit }
+      },
+      template: `
+        <div v-if="!submitted">
+          <p>Rate your experience:</p>
+          <button v-for="n in 5" @click="rating = n">
+            {{ n <= rating ? '★' : '☆' }}
+          </button>
+          <button @click="submit">Submit</button>
+        </div>
+        <div v-else>Thanks for your feedback!</div>
+      `
+    }).mount('#feedback-widget')
+  </script>
+</body>
+</html>
+```
+
+#### How Do They All Relate?
+
+```mermaid
+flowchart TB
+    subgraph FRAMEWORK[" "]
+        direction TB
+        F_TITLE(["🏗️ FRAMEWORK — Next.js"])
+        F_DESC["Controls your app's flow, calls your code"]
+        
+        subgraph LIBRARY[" "]
+            direction TB
+            L_TITLE(["📚 LIBRARY — React"])
+            L_DESC["You call it when you need UI rendering"]
+        end
+        
+        F_TITLE --> F_DESC
+        F_DESC --> L_TITLE
+        L_TITLE --> L_DESC
+    end
+    
+    subgraph PACKAGE[" "]
+        direction TB
+        P_TITLE(["📦 INSTALLED AS A PACKAGE"])
+        P_CMD[/"npm install react"/]
+        P_DESC["Has package.json"]
+        P_TITLE --> P_CMD
+        P_CMD --> P_DESC
+    end
+    
+    subgraph MODULE[" "]
+        direction TB
+        M_TITLE(["⚡ IMPORTED AS A MODULE"])
+        M_CMD[/"import React from 'react'"/]
+        M_TITLE --> M_CMD
+    end
+    
+    LIBRARY --> PACKAGE
+    PACKAGE --> MODULE
+
+    %% Subgraph Styling
+    style FRAMEWORK fill:#0f172a,stroke:#3b82f6,stroke-width:3px,rx:20,ry:20
+    style LIBRARY fill:#1e293b,stroke:#8b5cf6,stroke-width:3px,rx:15,ry:15
+    style PACKAGE fill:#0f172a,stroke:#10b981,stroke-width:2px,rx:15,ry:15
+    style MODULE fill:#0f172a,stroke:#f59e0b,stroke-width:2px,rx:15,ry:15
+    
+    %% Title Styling (stadium shape gives rounded pill look)
+    style F_TITLE fill:#3b82f6,stroke:#3b82f6,stroke-width:2px,color:#fff,font-weight:bold
+    style L_TITLE fill:#8b5cf6,stroke:#8b5cf6,stroke-width:2px,color:#fff,font-weight:bold
+    style P_TITLE fill:#10b981,stroke:#10b981,stroke-width:2px,color:#fff,font-weight:bold
+    style M_TITLE fill:#f59e0b,stroke:#f59e0b,stroke-width:2px,color:#fff,font-weight:bold
+    
+    %% Description Styling
+    style F_DESC fill:#1e293b,stroke:#475569,color:#cbd5e1,rx:10,ry:10
+    style L_DESC fill:#334155,stroke:#475569,color:#cbd5e1,rx:10,ry:10
+    style P_DESC fill:#1e293b,stroke:#475569,color:#cbd5e1,rx:10,ry:10
+    
+    %% Code/Command Styling
+    style P_CMD fill:#064e3b,stroke:#10b981,color:#a7f3d0,rx:5,ry:5
+    style M_CMD fill:#78350f,stroke:#f59e0b,color:#fde68a,rx:5,ry:5
+```
 
 ### A Kitchen Analogy for Front End Stacks
 Traditioanlly speaking, Javascript could have only ran on the browser. This is the V8 engine. However, what Node.js allows us to do is to run Javascript **outside** the browser. For development purposes, this basically means that our local computer acts as the server. However, when we do publish this on the web
