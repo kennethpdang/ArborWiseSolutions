@@ -1,0 +1,20 @@
+# Tutorials
+This web development project was requested by my friend Ethan Southard in exchange for pay. It is a chance for me to grow as a software developer and learn new technologies and to expand my technology stack. In 2026, the most popular technology stack is Next.js, Node.js, Express.js, and PostgreSQL. Therefore this project will be using those tools.
+
+## What is the Tutorials Folder For?
+The `📁 tutorials` folder is for me to practice certain skills in preparation for creating this web application for Ethan.
+
+## An Understanding of Modern Web Development Tools:
+This technology stack is very similar to the MERN stack and it's helpful for us to have an analogy of what is going on here and why we need all of these different technologies. But before we do, we have to have an understanding of modules, libraries, and frameworks.
+![NNEP Tech Stack Banner](../readme_images/NNEP%20Tech%20Stack%20Banner.png)
+
+### Understanding Terminologies
+In today's programming landscape, sometimes people use the words "modules", "libraries", and "frameworks" loosely without a rigorous definition for what they are. If we keep in mind the following below, we can rectify this:
+
+| Term | Workshop Analogy | What it Means | Examples
+|---|---|---|---|
+| Module | Cell A2 | Cell A3 | asdf |
+| Library | Cell B2 | Cell B3 | asdf |
+| Framework | Cell B2 | Cell B3 | asdf |
+
+React.js is a library, but Next.js is a framework. 
