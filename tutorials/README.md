@@ -180,4 +180,8 @@ flowchart TB
 ```
 
 ### A Kitchen Analogy for Front End Stacks
-Traditioanlly speaking, Javascript could have only ran on the browser. This is the V8 engine. However, what Node.js allows us to do is to run Javascript **outside** the browser. For development purposes, this basically means that our local computer acts as the server. However, when we do publish this on the web
+Traditionally speaking, Javascript could have only ran on the browser (via Google's V8 engine or Netscape's SpiderMonkey). However, what Node.js allows us to do is to run Javascript **outside** the browser. Node.js is a runtime environment (meaning that it can run Javascript **outside** the browser). This is important, because without a runtime environment like .NET Runtime (C#), Node.js/Bun.js/Deno.js (JS), Ruby Runtime (Ruby), or Python Runtime (Python), the browser **cannot** connect to a database. Databases have existed for a very long time and code could still connect to it, but they were often local code and not things from the browser.
+
+Sometimes people interchangeably use *runtime environment* with *server-side language*. But that is not to be confused. For example, people often call `Node.js` a server-side language. This is wrong. Javascript is the server-side language (the language running on the server) and `Node.js` is the runtime (it uses Javascript).
+
+For development purposes, this basically means that our local computer acts as the server. However, when we publish this on the web, we can use an actual server like [Hostinger](https://www.hostinger.com/) or [Vercel](https://vercel.com/). For example, using Node.js, we can read files on our computer or delete files from our computer when building the application locally. However, when we publish it to something like [Vercel](https://vercel.com/), Node.js would read files and delete files from the server.
