@@ -179,9 +179,93 @@ flowchart TB
     style M_CMD fill:#78350f,stroke:#f59e0b,color:#fde68a,rx:5,ry:5
 ```
 
-### A Kitchen Analogy for Front End Stacks
+### Javascript History, Runtime Environments, and Serverside Languages
 Traditionally speaking, Javascript could have only ran on the browser (via Google's V8 engine or Netscape's SpiderMonkey). However, what Node.js allows us to do is to run Javascript **outside** the browser. Node.js is a runtime environment (meaning that it can run Javascript **outside** the browser). This is important, because without a runtime environment like .NET Runtime (C#), Node.js/Bun.js/Deno.js (JS), Ruby Runtime (Ruby), or Python Runtime (Python), the browser **cannot** connect to a database. Databases have existed for a very long time and code could still connect to it, but they were often local code and not things from the browser.
 
 Sometimes people interchangeably use *runtime environment* with *server-side language*. But that is not to be confused. For example, people often call `Node.js` a server-side language. This is wrong. Javascript is the server-side language (the language running on the server) and `Node.js` is the runtime (it uses Javascript).
 
 For development purposes, this basically means that our local computer acts as the server. However, when we publish this on the web, we can use an actual server like [Hostinger](https://www.hostinger.com/) or [Vercel](https://vercel.com/). For example, using Node.js, we can read files on our computer or delete files from our computer when building the application locally. However, when we publish it to something like [Vercel](https://vercel.com/), Node.js would read files and delete files from the server.
+
+### How do HTTP Requests Work and Why Do We Need Express.js?
+The way web browsers work is that when a user types in a URL, the browser sends some information to a server using transmission control protocol (TCP). When TCP is structured like with a method (`GET`, `POST`), a path (`/api/users`), a body, etc.. then it's HTTP. 
+
+Here is an example of HTTP request:
+```
+GET /api/users HTTP/1.1
+Host: example.com
+Content-Type: application/json
+Authorization: Bearer abc123
+
+{"name": "Alice"}
+```
+Here the params or body is the `{"name": "Alice"}`. The server  
+
+### A Kitchen Analogy for Web Development
+Our web application is like a kitchen. 
+
+#### How Does our Web Application All Relate?
+```mermaid
+flowchart TB
+    subgraph SERVER["🖥️ YOUR COMPUTER / SERVER"]
+        direction TB
+        S_SPACE[" "]
+        
+        subgraph NODEJS["⚡ Node.js (The Runtime Environment)"]
+            direction TB
+            N_SPACE[" "]
+            
+            subgraph EXPRESS["🚀 Express.js (Your Server Code)"]
+                direction TB
+                E_SPACE[" "]
+                EXPRESS_CONTENT["• Listens for requests
+• Talks to PostgreSQL
+• Sends responses back"]
+            end
+        end
+        
+        subgraph POSTGRES["🗄️ PostgreSQL (Database)"]
+            direction TB
+            PG_SPACE[" "]
+            PG1["• Stores all your data in tables"]
+        end
+        
+        NODEJS <--> POSTGRES
+    end
+    
+    INTERNET{{"🌐 Internet"}}
+    
+    subgraph BROWSER["👤 USER'S BROWSER"]
+        direction TB
+        B_SPACE[" "]
+        BROWSER_CONTENT["• Makes fetch() requests
+• Displays the website"]
+    end
+    
+    SERVER <--> INTERNET
+    INTERNET <--> BROWSER
+
+    %% === SUBGRAPH STYLING ===
+    style SERVER fill:#0c1222,stroke:#06b6d4,stroke-width:3px,rx:20,ry:20
+    style NODEJS fill:#0f172a,stroke:#3b82f6,stroke-width:3px,rx:15,ry:15
+    style EXPRESS fill:#1e293b,stroke:#a855f7,stroke-width:3px,rx:12,ry:12
+    style POSTGRES fill:#0f172a,stroke:#22c55e,stroke-width:3px,rx:15,ry:15
+    style BROWSER fill:#0f172a,stroke:#f43f5e,stroke-width:3px,rx:15,ry:15
+    
+    %% === INTERNET NODE ===
+    style INTERNET fill:#f97316,stroke:#fb923c,stroke-width:3px,color:#fff,font-weight:bold
+    
+    %% === SPACER NODES (invisible) ===
+    style S_SPACE fill:none,stroke:none,color:transparent,height:1px
+    style N_SPACE fill:none,stroke:none,color:transparent,height:1px
+    style E_SPACE fill:none,stroke:none,color:transparent,height:1px
+    style PG_SPACE fill:none,stroke:none,color:transparent,height:1px
+    style B_SPACE fill:none,stroke:none,color:transparent,height:1px
+    
+    %% === CONTENT BOXES ===
+    style EXPRESS_CONTENT fill:#2e1065,stroke:#a855f7,color:#e9d5ff,rx:8,ry:8
+    style PG1 fill:#052e16,stroke:#22c55e,color:#bbf7d0,rx:8,ry:8
+    style BROWSER_CONTENT fill:#4c0519,stroke:#f43f5e,color:#fecdd3,rx:8,ry:8
+
+    %% === LINK STYLING ===
+    linkStyle default stroke:#64748b,stroke-width:2px
+```
