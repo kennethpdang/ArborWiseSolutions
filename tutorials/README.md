@@ -8,7 +8,7 @@ The `📁 tutorials` folder is for me to practice certain skills in preparation 
 This technology stack is very similar to the MERN stack and it's helpful for us to have an analogy of what is going on here and why we need all of these different technologies. But before we do, we have to have an understanding of modules, libraries, and frameworks.
 ![NNEP Tech Stack Banner](../readme_images/NNEP%20Tech%20Stack%20Banner.png)
 
-#### Understanding Terminologies
+### Understanding Terminologies
 In today's programming landscape, sometimes people use the words "modules", "libraries", and "frameworks" loosely without a rigorous definition for what they are. The following table will help us simplify the difference between the terms. Imagine that we are in a workshop. Then we would have the following:
 
 | Term | Workshop Analogy | What it Means | Examples
@@ -19,5 +19,5 @@ In today's programming landscape, sometimes people use the words "modules", "lib
 
 React.js is a library, but Next.js is a framework. 
 
-#### A Kitchen Analogy for Front End Stacks
+### A Kitchen Analogy for Front End Stacks
 Traditioanlly speaking, Javascript could have only ran on the browser. This is the V8 engine. However, what Node.js allows us to do is to run Javascript **outside** the browser. For development purposes, this basically means that our local computer acts as the server. However, when we do publish this on the web
