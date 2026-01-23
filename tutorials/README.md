@@ -50,7 +50,7 @@ This one deals with the frontend UI/UX framework called [Angular 2](https://angu
 *Also note: Sometimes there are technologies like Vue.js that can operate as both a library and a framework. You can build full SPA applications with Vue.js (it calls your lifecycle hooks (`mounted`, `created`, etc.), you don't call it). You can also use it as a library though. See more examples below:
 
 `Vue.js` As a Framework:
-```html
+```javascript
 // main.js - Vue takes over
 import { createApp } from 'vue'
 import App from './App.vue'
