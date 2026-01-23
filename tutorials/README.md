@@ -13,9 +13,9 @@ In today's programming landscape, sometimes people use the words "modules", "lib
 
 | Term | Workshop Analogy | What it Means | Examples
 |---|---|---|---|
-| Module | A tool *attachment*  | Cell A3 | `utils/date.js` |
+| Module | A tool *attachment* or a small labeled box of related tools. | A file or small unit grouping related code. | `utils/date.js` |
 | Library | A shelf of specialized tools that we use. Or a kit of tool attachments. A library usually consists of many *modules* | Cell B3 | asdf | `import * as THREE from "three";` (we are basically importing the THREE module from the three.js library) |
-| Framework | A jig/workbench with rules: it tells you where parts go (router table, assembly line station) | Cell B3 | asdf |
+| Framework | A jig/workbench with rules: it tells you where parts go (router table, assembly line station) | It's a structure that calls your code in a defined pattern. | `Next.js` |
 
 React.js is a library, but Next.js is a framework. 
 
