@@ -224,7 +224,7 @@ flowchart TB
         end
         
         subgraph POSTGRES[" "]
-            direction TB
+            direction LR
             P_TITLE(["🗄️ PostgreSQL"])
             P_DESC["(Database)"]
             P_DETAIL["Stores all your data in tables"]
