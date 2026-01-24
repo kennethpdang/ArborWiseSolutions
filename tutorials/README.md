@@ -214,35 +214,57 @@ flowchart TB
             direction TB
             N_TITLE(["⚡ Node.js"])
             N_DESC["(The Runtime Environment)"]
-            
+
             subgraph EXPRESS[" "]
-                direction LR
+                direction TB
                 E_TITLE(["🚀 Express.js"])
                 E_DESC["(Your Server Code)"]
                 E_DETAIL["Listens for requests, talks to PostgreSQL, sends responses back"]
+                
+                E_TITLE --- E_DESC --- E_DETAIL
             end
+            
+            N_TITLE --- N_DESC
         end
         
         subgraph POSTGRES[" "]
-            direction LR
+            direction TB
             P_TITLE(["🗄️ PostgreSQL"])
             P_DESC["(Database)"]
             P_DETAIL["Stores all your data in tables"]
+            
+            P_TITLE --- P_DESC --- P_DETAIL
         end
         
-        S_TITLE ~~~ NODEJS
+        S_TITLE --- NODEJS
         EXPRESS <--> POSTGRES
     end
     
     INTERNET(["🌐 Internet"])
     
     subgraph BROWSER[" "]
-        direction LR
+        direction TB
         B_TITLE(["👤 USER'S BROWSER"])
         B_DETAIL["Makes fetch requests, displays the website"]
+        
+        B_TITLE --- B_DETAIL
     end
     
     SERVER <--> INTERNET <--> BROWSER
+
+    %% === HIDE INTERNAL LINKS (indices 0-5, 7) ===
+    linkStyle 0 stroke:none,stroke-width:0
+    linkStyle 1 stroke:none,stroke-width:0
+    linkStyle 2 stroke:none,stroke-width:0
+    linkStyle 3 stroke:none,stroke-width:0
+    linkStyle 4 stroke:none,stroke-width:0
+    linkStyle 5 stroke:none,stroke-width:0
+    linkStyle 7 stroke:none,stroke-width:0
+    
+    %% === VISIBLE LINKS (indices 6, 8, 9) ===
+    linkStyle 6 stroke:#475569,stroke-width:1px
+    linkStyle 8 stroke:#475569,stroke-width:1px
+    linkStyle 9 stroke:#475569,stroke-width:1px
 
     %% === SUBGRAPH STYLING ===
     style SERVER fill:#0a0f1a,stroke:#06b6d4,stroke-width:3px,rx:20,ry:20
@@ -268,7 +290,4 @@ flowchart TB
     style E_DETAIL fill:#1e1b4b,stroke:#4c1d95,color:#ddd6fe,rx:8,ry:8
     style P_DETAIL fill:#052e16,stroke:#15803d,color:#bbf7d0,rx:8,ry:8
     style B_DETAIL fill:#4c0519,stroke:#be123c,color:#fecdd3,rx:8,ry:8
-
-    %% === LINK STYLING ===
-    linkStyle default stroke:#475569,stroke-width:1px
 ```
