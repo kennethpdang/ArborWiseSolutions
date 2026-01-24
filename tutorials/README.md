@@ -211,12 +211,12 @@ flowchart TB
         S_TITLE(["🖥️ YOUR COMPUTER / SERVER"])
         
         subgraph NODEJS[" "]
-            direction TB
+            direction LR
             N_TITLE(["⚡ Node.js"])
             N_DESC["(The Runtime Environment)"]
             
             subgraph EXPRESS[" "]
-                direction TB
+                direction LR
                 E_TITLE(["🚀 Express.js"])
                 E_DESC["(Your Server Code)"]
                 E_DETAIL["Listens for requests, talks to PostgreSQL, sends responses back"]
@@ -237,7 +237,7 @@ flowchart TB
     INTERNET(["🌐 Internet"])
     
     subgraph BROWSER[" "]
-        direction TB
+        direction LR
         B_TITLE(["👤 USER'S BROWSER"])
         B_DETAIL["Makes fetch requests, displays the website"]
     end
