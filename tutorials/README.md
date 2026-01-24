@@ -211,7 +211,7 @@ flowchart TB
         S_TITLE(["🖥️ YOUR COMPUTER / SERVER"])
         
         subgraph NODEJS[" "]
-            direction LR
+            direction TB
             N_TITLE(["⚡ Node.js"])
             N_DESC["(The Runtime Environment)"]
             
