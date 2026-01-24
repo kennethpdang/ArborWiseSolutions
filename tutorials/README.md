@@ -205,6 +205,7 @@ Our web application is like a kitchen.
 
 #### How Does our Web Application All Relate?
 ```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 40}}}%%
 flowchart TB
     subgraph SERVER[" "]
         direction TB
@@ -225,6 +226,7 @@ flowchart TB
             end
             
             N_TITLE --- N_DESC
+            N_DESC --- EXPRESS
         end
         
         subgraph POSTGRES[" "]
@@ -236,7 +238,7 @@ flowchart TB
             P_TITLE --- P_DESC --- P_DETAIL
         end
         
-        S_TITLE --- NODEJS
+        S_TITLE --- N_TITLE
         EXPRESS <--> POSTGRES
     end
     
@@ -252,42 +254,58 @@ flowchart TB
     
     SERVER <--> INTERNET <--> BROWSER
 
-    %% === HIDE INTERNAL LINKS (indices 0-5, 7) ===
-    linkStyle 0 stroke:none,stroke-width:0
-    linkStyle 1 stroke:none,stroke-width:0
-    linkStyle 2 stroke:none,stroke-width:0
-    linkStyle 3 stroke:none,stroke-width:0
-    linkStyle 4 stroke:none,stroke-width:0
-    linkStyle 5 stroke:none,stroke-width:0
-    linkStyle 7 stroke:none,stroke-width:0
-    
-    %% === VISIBLE LINKS (indices 6, 8, 9) ===
-    linkStyle 6 stroke:#475569,stroke-width:1px
-    linkStyle 8 stroke:#475569,stroke-width:1px
-    linkStyle 9 stroke:#475569,stroke-width:1px
+  %% === LINK INDEX REFERENCE ===
+  %% 0: E_TITLE --- E_DESC (hide)
+  %% 1: E_DESC --- E_DETAIL (hide)
+  %% 2: N_TITLE --- N_DESC (hide)
+  %% 3: N_DESC --- EXPRESS (hide)
+  %% 4: P_TITLE --- P_DESC (hide)
+  %% 5: P_DESC --- P_DETAIL (hide)
+  %% 6: S_TITLE --- NODEJS (hide)
+  %% 7: EXPRESS <--> POSTGRES (SHOW)
+  %% 8: B_TITLE --- B_DETAIL (hide)
+  %% 9: SERVER <--> INTERNET (SHOW)
+  %% 10: INTERNET <--> BROWSER (SHOW)
 
-    %% === SUBGRAPH STYLING ===
-    style SERVER fill:#0a0f1a,stroke:#06b6d4,stroke-width:3px,rx:20,ry:20
-    style NODEJS fill:#0f172a,stroke:#3b82f6,stroke-width:3px,rx:15,ry:15
-    style EXPRESS fill:#1e293b,stroke:#a855f7,stroke-width:3px,rx:12,ry:12
-    style POSTGRES fill:#0f172a,stroke:#22c55e,stroke-width:3px,rx:15,ry:15
-    style BROWSER fill:#0f172a,stroke:#f43f5e,stroke-width:3px,rx:15,ry:15
-    
-    %% === TITLE STYLING (pill shaped) ===
-    style S_TITLE fill:#06b6d4,stroke:#06b6d4,stroke-width:2px,color:#fff,font-weight:bold
-    style N_TITLE fill:#3b82f6,stroke:#3b82f6,stroke-width:2px,color:#fff,font-weight:bold
-    style E_TITLE fill:#a855f7,stroke:#a855f7,stroke-width:2px,color:#fff,font-weight:bold
-    style P_TITLE fill:#22c55e,stroke:#22c55e,stroke-width:2px,color:#fff,font-weight:bold
-    style B_TITLE fill:#f43f5e,stroke:#f43f5e,stroke-width:2px,color:#fff,font-weight:bold
-    style INTERNET fill:#f97316,stroke:#f97316,stroke-width:2px,color:#fff,font-weight:bold
-    
-    %% === DESCRIPTION STYLING (subtitles) ===
-    style N_DESC fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
-    style E_DESC fill:#2e1065,stroke:#6b21a8,color:#c4b5fd,rx:8,ry:8
-    style P_DESC fill:#14532d,stroke:#166534,color:#86efac,rx:8,ry:8
-    
-    %% === DETAIL STYLING ===
-    style E_DETAIL fill:#1e1b4b,stroke:#4c1d95,color:#ddd6fe,rx:8,ry:8
-    style P_DETAIL fill:#052e16,stroke:#15803d,color:#bbf7d0,rx:8,ry:8
-    style B_DETAIL fill:#4c0519,stroke:#be123c,color:#fecdd3,rx:8,ry:8
+  %% === HIDDEN LINKS ===
+  linkStyle 0 stroke:none
+  linkStyle 1 stroke:none
+  linkStyle 2 stroke:none
+  linkStyle 3 stroke:none
+  linkStyle 4 stroke:none
+  linkStyle 5 stroke:none
+  linkStyle 6 stroke:none
+  linkStyle 8 stroke:none
+  
+  %% === VISIBLE LINKS ===
+  linkStyle 7 stroke:#475569,stroke-width:2px
+  linkStyle 9 stroke:#475569,stroke-width:2px
+  linkStyle 10 stroke:#475569,stroke-width:2px
+
+  %% === SUBGRAPH STYLING ===
+  style SERVER fill:#0a0f1a,stroke:#06b6d4,stroke-width:3px,rx:20,ry:20
+  style NODEJS fill:#0f172a,stroke:#3b82f6,stroke-width:3px,rx:15,ry:15
+  style EXPRESS fill:#1e293b,stroke:#a855f7,stroke-width:3px,rx:12,ry:12
+  style POSTGRES fill:#0f172a,stroke:#22c55e,stroke-width:3px,rx:15,ry:15
+  style BROWSER fill:#0f172a,stroke:#f43f5e,stroke-width:3px,rx:15,ry:15
+  
+  %% === TITLE STYLING (pill shaped) ===
+  style S_TITLE fill:#06b6d4,stroke:#06b6d4,stroke-width:2px,color:#fff,font-weight:bold
+  style N_TITLE fill:#3b82f6,stroke:#3b82f6,stroke-width:2px,color:#fff,font-weight:bold
+  style E_TITLE fill:#a855f7,stroke:#a855f7,stroke-width:2px,color:#fff,font-weight:bold
+  style P_TITLE fill:#22c55e,stroke:#22c55e,stroke-width:2px,color:#fff,font-weight:bold
+  style B_TITLE fill:#f43f5e,stroke:#f43f5e,stroke-width:2px,color:#fff,font-weight:bold
+  style INTERNET fill:#f97316,stroke:#f97316,stroke-width:2px,color:#fff,font-weight:bold
+  
+  %% === DESCRIPTION STYLING (subtitles) ===
+  style N_DESC fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
+  style E_DESC fill:#2e1065,stroke:#6b21a8,color:#c4b5fd,rx:8,ry:8
+  style P_DESC fill:#14532d,stroke:#166534,color:#86efac,rx:8,ry:8
+  
+  %% === DETAIL STYLING ===
+  style E_DETAIL fill:#1e1b4b,stroke:#4c1d95,color:#ddd6fe,rx:8,ry:8
+  style P_DETAIL fill:#052e16,stroke:#15803d,color:#bbf7d0,rx:8,ry:8
+  style B_DETAIL fill:#4c0519,stroke:#be123c,color:#fecdd3,rx:8,ry:8
+
+  %%{init: {'flowchart': {'nodeSpacing': 65, 'rankSpacing': 15}}}%%
 ```
