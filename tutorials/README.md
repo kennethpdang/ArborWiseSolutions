@@ -206,66 +206,69 @@ Our web application is like a kitchen.
 #### How Does our Web Application All Relate?
 ```mermaid
 flowchart TB
-    subgraph SERVER["🖥️ YOUR COMPUTER / SERVER"]
+    subgraph SERVER[" "]
         direction TB
-        S_SPACE[" "]
+        S_TITLE(["🖥️ YOUR COMPUTER / SERVER"])
         
-        subgraph NODEJS["⚡ Node.js (The Runtime Environment)"]
+        subgraph NODEJS[" "]
             direction TB
-            N_SPACE[" "]
+            N_TITLE(["⚡ Node.js"])
+            N_DESC["(The Runtime Environment)"]
             
-            subgraph EXPRESS["🚀 Express.js (Your Server Code)"]
+            subgraph EXPRESS[" "]
                 direction TB
-                E_SPACE[" "]
-                EXPRESS_CONTENT["• Listens for requests
-• Talks to PostgreSQL
-• Sends responses back"]
+                E_TITLE(["🚀 Express.js"])
+                E_DESC["(Your Server Code)"]
+                E_DETAIL["Listens for requests, talks to PostgreSQL, sends responses back"]
             end
         end
         
-        subgraph POSTGRES["🗄️ PostgreSQL (Database)"]
+        subgraph POSTGRES[" "]
             direction TB
-            PG_SPACE[" "]
-            PG1["• Stores all your data in tables"]
+            P_TITLE(["🗄️ PostgreSQL"])
+            P_DESC["(Database)"]
+            P_DETAIL["Stores all your data in tables"]
         end
         
-        NODEJS <--> POSTGRES
+        S_TITLE ~~~ NODEJS
+        EXPRESS <--> POSTGRES
     end
     
-    INTERNET{{"🌐 Internet"}}
+    INTERNET(["🌐 Internet"])
     
-    subgraph BROWSER["👤 USER'S BROWSER"]
+    subgraph BROWSER[" "]
         direction TB
-        B_SPACE[" "]
-        BROWSER_CONTENT["• Makes fetch() requests
-• Displays the website"]
+        B_TITLE(["👤 USER'S BROWSER"])
+        B_DETAIL["Makes fetch requests, displays the website"]
     end
     
-    SERVER <--> INTERNET
-    INTERNET <--> BROWSER
+    SERVER <--> INTERNET <--> BROWSER
 
     %% === SUBGRAPH STYLING ===
-    style SERVER fill:#0c1222,stroke:#06b6d4,stroke-width:3px,rx:20,ry:20
+    style SERVER fill:#0a0f1a,stroke:#06b6d4,stroke-width:3px,rx:20,ry:20
     style NODEJS fill:#0f172a,stroke:#3b82f6,stroke-width:3px,rx:15,ry:15
     style EXPRESS fill:#1e293b,stroke:#a855f7,stroke-width:3px,rx:12,ry:12
     style POSTGRES fill:#0f172a,stroke:#22c55e,stroke-width:3px,rx:15,ry:15
     style BROWSER fill:#0f172a,stroke:#f43f5e,stroke-width:3px,rx:15,ry:15
     
-    %% === INTERNET NODE ===
-    style INTERNET fill:#f97316,stroke:#fb923c,stroke-width:3px,color:#fff,font-weight:bold
+    %% === TITLE STYLING (pill shaped) ===
+    style S_TITLE fill:#06b6d4,stroke:#06b6d4,stroke-width:2px,color:#fff,font-weight:bold
+    style N_TITLE fill:#3b82f6,stroke:#3b82f6,stroke-width:2px,color:#fff,font-weight:bold
+    style E_TITLE fill:#a855f7,stroke:#a855f7,stroke-width:2px,color:#fff,font-weight:bold
+    style P_TITLE fill:#22c55e,stroke:#22c55e,stroke-width:2px,color:#fff,font-weight:bold
+    style B_TITLE fill:#f43f5e,stroke:#f43f5e,stroke-width:2px,color:#fff,font-weight:bold
+    style INTERNET fill:#f97316,stroke:#f97316,stroke-width:2px,color:#fff,font-weight:bold
     
-    %% === SPACER NODES (invisible) ===
-    style S_SPACE fill:none,stroke:none,color:transparent,height:1px
-    style N_SPACE fill:none,stroke:none,color:transparent,height:1px
-    style E_SPACE fill:none,stroke:none,color:transparent,height:1px
-    style PG_SPACE fill:none,stroke:none,color:transparent,height:1px
-    style B_SPACE fill:none,stroke:none,color:transparent,height:1px
+    %% === DESCRIPTION STYLING (subtitles) ===
+    style N_DESC fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
+    style E_DESC fill:#2e1065,stroke:#6b21a8,color:#c4b5fd,rx:8,ry:8
+    style P_DESC fill:#14532d,stroke:#166534,color:#86efac,rx:8,ry:8
     
-    %% === CONTENT BOXES ===
-    style EXPRESS_CONTENT fill:#2e1065,stroke:#a855f7,color:#e9d5ff,rx:8,ry:8
-    style PG1 fill:#052e16,stroke:#22c55e,color:#bbf7d0,rx:8,ry:8
-    style BROWSER_CONTENT fill:#4c0519,stroke:#f43f5e,color:#fecdd3,rx:8,ry:8
+    %% === DETAIL STYLING ===
+    style E_DETAIL fill:#1e1b4b,stroke:#4c1d95,color:#ddd6fe,rx:8,ry:8
+    style P_DETAIL fill:#052e16,stroke:#15803d,color:#bbf7d0,rx:8,ry:8
+    style B_DETAIL fill:#4c0519,stroke:#be123c,color:#fecdd3,rx:8,ry:8
 
     %% === LINK STYLING ===
-    linkStyle default stroke:#64748b,stroke-width:2px
+    linkStyle default stroke:#475569,stroke-width:1px
 ```
