@@ -266,9 +266,9 @@ emitter.emit('data');
 emitter.emit('end');
 ```
 
-When you do `emitter.on('data', function A() ...)` it basically adds the key 'data' into `listeners` dictionary with the function `function A()` as the value into the array. Later on you are also adding `function B()` into that same array. Then when you do `emitter.emit('data')` it looks in the dictionary `listeners` and calls both `function A()` and `function B()` therefore printing both "A" and "B". Using that same logic, when we do `emitter.emit('end')` it would print "C". 
+When you do `emitter.on('data', function A() ...)` it basically adds the key 'data' into `listeners` dictionary with the function `function A()` as the value into the array. Later on you are also adding `function B()` into that same array. Then when you do `emitter.emit('data')` it looks in the dictionary `listeners` and calls both `function A()` and `function B()` therefore printing both "A" and "B". Using that same logic, when we do `emitter.emit('end')` it would print "C". Noticed, however that in the example code block where we used the `http.createServer()` method there are no `.emit()` methods being used? This is because `Node.js` actually emitts them way under the hood in the `http` module using C++ and sockets. 
 
-You can read more about `Node.js` and EventEmitters [here](https://www.w3schools.com/nodejs/ref_eventemitter.asp).
+You can read more about `Node.js`'s EventEmitters [here](https://www.w3schools.com/nodejs/ref_eventemitter.asp).
 
 Where `Express.js` comes in is that it simplifies the above so much more. It is built on top of `Node.js`'s `http` module:
 ```javascript
@@ -290,6 +290,7 @@ app.get('/api/users', (req, res) => {
 
 app.listen(3000); // internally calls http.createServer()
 ```
+Becuase of `Express.js` we don't have to worry about all of the low level parsing.
 
 #### Why TCP Connection Instead of UDP?
 UDP has it's purposes, however for modern webpages TCP makes the best sense. We need a connection type that guarantees every package is awknowledge. If a packet is lost, you want it retransmitted so that there is no partial HTML missing from a page. And you also want the packets to arrive in the right order. Here is a schematic explaining this:
@@ -343,10 +344,36 @@ flowchart LR
 However, there are some things UDP excels at: video games, streaming videos, VoIP...
 ⚠️ Also note: As of 2026, modern HTTP/3 uses a combination of UDP and TCP called QUIC.
 
-### A Kitchen Analogy for Web Development
-Our web application is like a kitchen. We have that the kitchen building is the runtime environment `Node.js`. 
+### NNEP Technology Stack: A Kitchen Analogy for Web Development
+Our web application is like a kitchen. Using the context of the kitchen, we can make the following analogy (here instead of including `Next.js` we actually include `React.js`, but this will be explain in more detail later):
 
-#### How Does our Web Application All Relate?
+| Term | Kitchen Analogy |
+|---|---|
+| Node.js | The kitchen building (running water, eletricity, chefs in the kitchen). Not the **dining** room. |
+| Express.js | The waiter and the order system. |
+| PostgresSQL | The hotplate with items stocked or the food pantry. |
+| React.js | The dining room and the menu (similar to a navigation bar). |
+| The Browser | The customer sitting at the table. |
+
+Then, the way things flow is using something like:
+```
+1. 👤 Customer (Browser): Walks into the dining room (React.js loads)
+2. 🍽️ Dining Room (React.js): Shows a beautiful menu (the navigation bar) on top of a table.
+3. 👤 Customer (Browser): Looks at the menu and sees the desired choice. Fetches a waiter and says "I want to order a plate of chicken karahi."
+5. 🚶 Waiter/🧑‍🍳 Chef (Express.js): Goes into the kitchen and tells the chef to prepare a chicken karahi dish.
+6. 
+6. 🧑‍🍳 Chef (Express.js): Goes into the pantry.
+7. 🗄️ Pantry (PostgresSQL): Provides ingredients for chicken karahi: chicken, paprika, red chilli, cumin powder, etc.
+8. 🧑‍🍳 Chef (Node.js): Uses the running water, the electricity, the stove to make the chicken karahi dish and gives it to the waiter.
+9. 🚶 Waiter (Express.js): Carries the dish back to the customer and places it down on the table.
+10. 🍽️ Dining Room (React.js): Has a new chicken karahi dish presented on the table. 
+11. 👤 Customer (Browser): Enjoys the chicken dish.
+```
+
+There is one difference however. `Next.js` is not simply the dining room.  
+
+The following diagram below can explain how the technologies relate to one another:
+#### How Does our Web Application All Relate in a MERN Application?
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 40}}}%%
 flowchart TB
