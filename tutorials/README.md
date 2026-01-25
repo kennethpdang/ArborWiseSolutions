@@ -199,7 +199,9 @@ Authorization: Bearer abc123
 
 {"name": "Alice"}
 ```
+
 The server will recieve this HTTP request in raw bytes, but something needs to be able to parse the bytes. Here, we have something like the `http` module in `Node.js` to do this low level work:
+
 ```javascript
 const http = require('http');
 
@@ -226,7 +228,47 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000);
 ```
-What this is doing is passing the `req` object (which has it's own properties and methods) and the `res` object into the `http.createServer()` function. Then the `req` object is listening for the event "data" (which happens when a packet is sent) or "end".
+
+What this is doing is passing the `req` object (which has it's own properties and methods) and the `res` object into the `http.createServer()` function. Then the `req` object is listening for the event "data" (which happens when a chunk (chunks can be a packet or multiple packets) is sent) or "end". These "data" and "end" event are fired by `Node.js`. There is a lot that is happening under the hood here with EventEmitters. The `req` object inherents from the `EventEmitters` object. The `EventEmitters` object looks similar to something below:
+
+```javascript
+class SimpleEventEmitter {
+    constructor() {
+        this.listeners = {};  // { eventName: [fn1, fn2, ...], ... }, similar to a dictionary.
+    }
+    
+    on(eventName, callback) {
+        // Add callback to the list for this event
+        if (!this.listeners[eventName]) {
+            this.listeners[eventName] = [];
+        }
+        this.listeners[eventName].push(callback);
+    }
+    
+    emit(eventName, ...args) {
+        // Call all callbacks registered for this event
+        const callbacks = this.listeners[eventName] || [];
+        for (const cb of callbacks) {
+            cb(...args);
+        }
+    }
+}
+```
+
+Here the `eventName` is just a string like "data" or "end". Here `listeners` is basically like a dictionary where the key is the string `eventName` and the values are an array `[fn1, fn2]` of functions (here it is `fn1`, `fn2`). Here is an example of how the object is used:
+
+```javascript
+const emitter = new SimpleEventEmitter(); // Using the object above.
+emitter.on('data', function A() { console.log('A'); }); // Similar to req.on('data', (chunk) => { ... }) a few code blocks above.
+emitter.on('data', function B() { console.log('B'); }); 
+emitter.on('end', function C() { console.log('C'); });
+emitter.emit('data');
+emitter.emit('end');
+```
+
+When you do `emitter.on('data', function A() ...)` it basically adds the key 'data' into `listeners` dictionary with the function `function A()` as the value into the array. Later on you are also adding `function B()` into that same array. Then when you do `emitter.emit('data')` it looks in the dictionary `listeners` and calls both `function A()` and `function B()` therefore printing both "A" and "B". Using that same logic, when we do `emitter.emit('end')` it would print "C". 
+
+You can read more about `Node.js` and EventEmitters [here](https://www.w3schools.com/nodejs/ref_eventemitter.asp).
 
 Where `Express.js` comes in is that it simplifies the above so much more. It is built on top of `Node.js`'s `http` module:
 ```javascript
@@ -248,7 +290,6 @@ app.get('/api/users', (req, res) => {
 
 app.listen(3000); // internally calls http.createServer()
 ```
-
 
 #### Why TCP Connection Instead of UDP?
 UDP has it's purposes, however for modern webpages TCP makes the best sense. We need a connection type that guarantees every package is awknowledge. If a packet is lost, you want it retransmitted so that there is no partial HTML missing from a page. And you also want the packets to arrive in the right order. Here is a schematic explaining this:
