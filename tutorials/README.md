@@ -349,10 +349,10 @@ Our web application is like a kitchen. Using the context of the kitchen, we can 
 
 | Term | Kitchen Analogy |
 |---|---|
-| Node.js | The kitchen building (running water, eletricity, chefs in the kitchen). Not the **dining** room. |
-| Express.js | The waiter and the order system. |
-| PostgresSQL | The hotplate with items stocked or the food pantry. |
-| React.js | The dining room and the menu (similar to a navigation bar). |
+| Node.js | The kitchen utilities (electricity, gas, running water) — not an actor, just enables everything. |
+| Express.js | The waiter and chef — takes orders, communicates between dining room and kitchen and cooks a meal. |
+| PostgresSQL | PostgreSQLThe pantry — stores raw ingredients (data). |
+| React.js | The dining room + menu + table setup — what the customer sees. |
 | The Browser | The customer sitting at the table. |
 
 Then, the way things flow is using something like:
@@ -360,17 +360,88 @@ Then, the way things flow is using something like:
 1. 👤 Customer (Browser): Walks into the dining room (React.js loads)
 2. 🍽️ Dining Room (React.js): Shows a beautiful menu (the navigation bar) on top of a table.
 3. 👤 Customer (Browser): Looks at the menu and sees the desired choice. Fetches a waiter and says "I want to order a plate of chicken karahi."
-5. 🚶 Waiter/🧑‍🍳 Chef (Express.js): Goes into the kitchen and tells the chef to prepare a chicken karahi dish.
-6. 
-6. 🧑‍🍳 Chef (Express.js): Goes into the pantry.
+4. 🚶 Waiter/🧑‍🍳 Chef (Express.js): Goes into the kitchen and tells the chef to prepare a chicken karahi dish.
+5. 🍳 Kitchen (Node.js): Has running water, electricity, stoves for the chef to prepare the chicken karahi dish.
+6. 🧑‍🍳 Chef (Express.js): Goes into the pantry to get some ingredients.
 7. 🗄️ Pantry (PostgresSQL): Provides ingredients for chicken karahi: chicken, paprika, red chilli, cumin powder, etc.
-8. 🧑‍🍳 Chef (Node.js): Uses the running water, the electricity, the stove to make the chicken karahi dish and gives it to the waiter.
-9. 🚶 Waiter (Express.js): Carries the dish back to the customer and places it down on the table.
+8. 🚶 Waiter/🧑‍🍳 Chef (Express.js): Uses the running water, the electricity, the stove (the 🍳 kitchen / Node.js) to make the chicken karahi dish and gives it to the waiter.
+9. 🚶 Waiter/🧑‍🍳 Chef (Express.js): Carries the dish back to the customer and places it down on the table.
 10. 🍽️ Dining Room (React.js): Has a new chicken karahi dish presented on the table. 
 11. 👤 Customer (Browser): Enjoys the chicken dish.
 ```
+In our example we can't really say that `Express.js` is just the waiter or just the 🧑‍🍳 chef. It's really like both of them together. Unless we assume a waiter that also knows how to cook or a chef that also takes orders. Another way to isolate the 🧑‍🍳 chef and the 🚶 waiter is to have the 🧑‍🍳 chef be the server-side code running in `Node.js`. Therefore the chef would basically represent `Node.js` and hands the data back to the 🚶 waiter.
 
-There is one difference however. `Next.js` is not simply the dining room.  
+There is one difference however. `Next.js` is not simply the dining room + menu + table setup. With `Next.js`, it's like the kitchen and the dining room and the waiters all in one. Traditionally, without `Next.js` you would have something like the following:
+```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 50}}}%%
+flowchart LR
+    subgraph DINING[" "]
+        direction TB
+        D_TITLE(["🍽️ DINING ROOM (React)"])
+        D_DESC["Separate building"]
+        D_ADDR["Different address<br/>localhost:3000"]
+        
+        D_TITLE --- D_DESC --- D_ADDR
+    end
+    
+    subgraph WAITER_TRAVEL[" "]
+        direction TB
+        W_ICON["🏃"]
+        W_LABEL["Waiter<br/>travels"]
+        
+        W_ICON --- W_LABEL
+    end
+    
+    subgraph KITCHEN[" "]
+        direction TB
+        K_TITLE(["🍳 KITCHEN (Node.js)"])
+        K_WAITER["Waiter (Express.js)"]
+        K_PANTRY["Pantry (PostgreSQL)"]
+        K_ADDR["Different address<br/>localhost:5000"]
+        
+        K_TITLE --- K_WAITER --- K_PANTRY --- K_ADDR
+    end
+    
+    DINING <--> WAITER_TRAVEL <--> KITCHEN
+
+    %% === HIDDEN LINKS ===
+    linkStyle 0 stroke:none
+    linkStyle 1 stroke:none
+    linkStyle 2 stroke:none
+    linkStyle 3 stroke:none
+    linkStyle 4 stroke:none
+    linkStyle 5 stroke:none
+    
+    %% === VISIBLE LINKS ===
+    linkStyle 6 stroke:#475569,stroke-width:2px
+    linkStyle 7 stroke:#475569,stroke-width:2px
+
+    %% === SUBGRAPH STYLING ===
+    style DINING fill:#0f172a,stroke:#3b82f6,stroke-width:3px,rx:15,ry:15
+    style KITCHEN fill:#0f172a,stroke:#22c55e,stroke-width:3px,rx:15,ry:15
+    style WAITER_TRAVEL fill:transparent,stroke:none
+    
+    %% === TITLE STYLING (pill shaped) ===
+    style D_TITLE fill:#3b82f6,stroke:#3b82f6,stroke-width:2px,color:#fff,font-weight:bold
+    style K_TITLE fill:#22c55e,stroke:#22c55e,stroke-width:2px,color:#fff,font-weight:bold
+    
+    %% === DINING ROOM STYLING ===
+    style D_DESC fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
+    style D_ADDR fill:#1e1b4b,stroke:#3730a3,color:#a5b4fc,rx:8,ry:8
+    
+    %% === KITCHEN STYLING ===
+    style K_WAITER fill:#052e16,stroke:#15803d,color:#bbf7d0,rx:8,ry:8
+    style K_PANTRY fill:#052e16,stroke:#15803d,color:#bbf7d0,rx:8,ry:8
+    style K_ADDR fill:#052e16,stroke:#166534,color:#86efac,rx:8,ry:8
+    
+    %% === WAITER ICON STYLING ===
+    style W_ICON fill:transparent,stroke:none,color:#f97316,font-size:24px
+    style W_LABEL fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
+```
+
+However, with `Next.js` you have the following:
+
+A good analogy for `Next.js` would be a cafeteria styled restuarant as opposed to a traditional restuarant with waiters.
 
 The following diagram below can explain how the technologies relate to one another:
 #### How Does our Web Application All Relate in a MERN Application?
