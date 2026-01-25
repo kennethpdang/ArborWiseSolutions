@@ -194,6 +194,7 @@ Here is an example of HTTP request:
 GET /api/users HTTP/1.1
 Host: example.com
 Content-Type: application/json
+Content-Length: 17
 Authorization: Bearer abc123
 
 {"name": "Alice"}
@@ -225,13 +226,44 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000);
 ```
-What this is doing is passing the `req` object (which has it's own properties and methods) and the `res` object into the `http.createServer()` function. 
+What this is doing is passing the `req` object (which has it's own properties and methods) and the `res` object into the `http.createServer()` function. Then the `req` object is listening for the event "data" (which happens when a packet is sent) or "end".
+
+Where `Express.js` comes in is that it simplifies the above so much more. It is built on top of `Node.js`'s `http` module:
+```javascript
+const express = require('express');
+const app = express();
+
+// Middleware: runs on every request
+app.use(express.json()); // parses JSON bodies into req.body
+
+// Route handlers
+app.get('/api/users', (req, res) => {
+  // Express enhances req and res with helper methods:
+  console.log(req.query);   // parsed query string: ?page=2 → { page: "2" }
+  console.log(req.body);    // parsed JSON body (thanks to middleware)
+  console.log(req.params);  // URL params from routes like /users/:id
+  
+  res.json({ users: [] });  // sets Content-Type and stringifies automatically
+});
+
+app.listen(3000); // internally calls http.createServer()
+```
+
 
 #### Why TCP Connection Instead of UDP?
 UDP has it's purposes, however for modern webpages TCP makes the best sense. We need a connection type that guarantees every package is awknowledge. If a packet is lost, you want it retransmitted so that there is no partial HTML missing from a page. And you also want the packets to arrive in the right order. Here is a schematic explaining this:
 ```mermaid
-%%{init: {'flowchart': {'nodeSpacing': 15, 'rankSpacing': 50}}}%%
-flowchart LR
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing':10}}}%%
+flowchart LR    
+    subgraph UDP_SECTION[" "]
+        direction LR
+        UDP_TITLE(["⚡ UDP"])
+        BLAST["Here's packet 1, 2, 3, 4, 5"]
+        HOPE["(hope for the best)"]
+        
+        UDP_TITLE ~~~ BLAST --> HOPE
+    end
+
     subgraph TCP_SECTION[" "]
         direction LR
         TCP_TITLE(["📦 TCP"])
@@ -244,17 +276,6 @@ flowchart LR
         TCP_TITLE ~~~ P1 --> A1 --> P2 --> A2 --> ETC
     end
     
-    subgraph UDP_SECTION[" "]
-        direction LR
-        UDP_TITLE(["⚡ UDP"])
-        BLAST["Here's packet 1, 2, 3, 4, 5"]
-        HOPE["(hope for the best)"]
-        
-        UDP_TITLE ~~~ BLAST --> HOPE
-    end
-    
-    TCP_SECTION ~~~ UDP_SECTION
-
     %% === SUBGRAPH STYLING ===
     style TCP_SECTION fill:#0f172a,stroke:#22c55e,stroke-width:3px,rx:15,ry:15
     style UDP_SECTION fill:#0f172a,stroke:#f97316,stroke-width:3px,rx:15,ry:15
@@ -282,7 +303,7 @@ However, there are some things UDP excels at: video games, streaming videos, VoI
 ⚠️ Also note: As of 2026, modern HTTP/3 uses a combination of UDP and TCP called QUIC.
 
 ### A Kitchen Analogy for Web Development
-Our web application is like a kitchen. 
+Our web application is like a kitchen. We have that the kitchen building is the runtime environment `Node.js`. 
 
 #### How Does our Web Application All Relate?
 ```mermaid
