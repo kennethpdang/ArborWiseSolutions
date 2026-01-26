@@ -1,6 +1,18 @@
 <html>
     <body>
         <div id="app"></div>
-        <script></script>
+        <script type="text/javascript">
+        
+        const app = document.getElementById('app');
+        const header = document.createElement('h1');
+
+        const text = 'Develop. Preview. Ship.';
+        const headerContent = document.createTextNode(text);
+
+        header.appendChild(headerContent);
+        app.appendChild(header);
+        </script>
     </body>
 </html>
+
+<!-- Here you are using imperative programming and giving the chef step by step instructions on how to build the pizza. We want to use React.js to have declarative programming, like just ordering the pizza without being concerned how it was made. -->

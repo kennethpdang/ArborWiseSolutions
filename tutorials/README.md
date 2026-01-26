@@ -440,6 +440,77 @@ flowchart LR
 ```
 
 However, with `Next.js` you have the following:
+```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 50}}}%%
+flowchart TB
+    subgraph NEXTJS[" "]
+        direction TB
+        N_TITLE(["⚡ NEXT.JS RESTAURANT (One building, one address)"])
+        
+        subgraph INNER[" "]
+            direction LR
+            subgraph DINING[" "]
+                direction TB
+                D_TITLE["Dining Room"]
+                D_DESC["(React pages)"]
+                D_TITLE --- D_DESC
+            end
+            
+            subgraph KITCHEN[" "]
+                direction TB
+                K_TITLE["Kitchen"]
+                K_DESC["(API routes)"]
+                K_PANTRY["Pantry (PostgreSQL)"]
+                K_TITLE --- K_DESC --- K_PANTRY
+            end
+            
+            DINING <--> KITCHEN
+        end
+        
+        N_STAFF["Staff work both sides — no dedicated waiter needed"]
+        
+        N_TITLE --- INNER --- N_STAFF
+    end
+    
+    N_ADDR["localhost:3000"]
+    
+    NEXTJS --- N_ADDR
+
+    %% === HIDDEN LINKS ===
+    linkStyle 0 stroke:none
+    linkStyle 1 stroke:none
+    linkStyle 2 stroke:none
+    linkStyle 4 stroke:none
+    linkStyle 5 stroke:none
+    linkStyle 6 stroke:none
+    
+    %% === VISIBLE LINKS ===
+    linkStyle 3 stroke:#475569,stroke-width:2px
+
+    %% === MAIN CONTAINER STYLING ===
+    style NEXTJS fill:#0a0f1a,stroke:#a855f7,stroke-width:3px,rx:20,ry:20
+    style INNER fill:transparent,stroke:none
+    
+    %% === INNER SUBGRAPH STYLING ===
+    style DINING fill:#0f172a,stroke:#3b82f6,stroke-width:2px,rx:12,ry:12
+    style KITCHEN fill:#0f172a,stroke:#22c55e,stroke-width:2px,rx:12,ry:12
+    
+    %% === TITLE STYLING ===
+    style N_TITLE fill:#a855f7,stroke:#a855f7,stroke-width:2px,color:#fff,font-weight:bold
+    
+    %% === DINING STYLING ===
+    style D_TITLE fill:#1e3a5f,stroke:#3b82f6,color:#93c5fd,rx:8,ry:8,font-weight:bold
+    style D_DESC fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
+    
+    %% === KITCHEN STYLING ===
+    style K_TITLE fill:#052e16,stroke:#22c55e,color:#86efac,rx:8,ry:8,font-weight:bold
+    style K_DESC fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
+    style K_PANTRY fill:#052e16,stroke:#15803d,color:#bbf7d0,rx:8,ry:8
+    
+    %% === FOOTER STYLING ===
+    style N_STAFF fill:#1e293b,stroke:#475569,color:#94a3b8,rx:8,ry:8
+    style N_ADDR fill:#2e1065,stroke:#7c3aed,color:#c4b5fd,rx:8,ry:8
+```
 
 A good analogy for `Next.js` would be a cafeteria styled restuarant as opposed to a traditional restuarant with waiters.
 
