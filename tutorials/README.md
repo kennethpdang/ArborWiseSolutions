@@ -527,17 +527,17 @@ flowchart TB
     style N_ADDR fill:#2e1065,stroke:#7c3aed,color:#c4b5fd,rx:8,ry:8
 ```
 
-A good analogy for `Next.js` would be a cafeteria styled restuarant as opposed to a traditional restuarant with waiters.
+A good analogy for `Next.js` would be a cafeteria styled restuarant as opposed to a traditional restuarant with waiters. Think of a resturant like Luby's. The way things flow is something like:
 
-The way things flow is something like:
 ```
-1. 👤 Cutomer (Browser): Walk up to the cafeteria line
-2. 🍽️ Counter (React): See all the options displayed
-3. 👤 You: Point at the chicken karahi
-4. 🧑‍🍳 Counter Staff (API Route): Grabs it from the hot plate / back pantry 
-   (PostgreSQL), puts it on your tray immediately
+1. 👤 Cutomer (Browser): Walks up to the cafeteria line.
+2. 🍽️ Counter (Next.js): See all the options displayed (the React.js part of Next.js).
+3. 👤 Customer (Browser): Point at the chicken karahi or say something like "I would like the chicken karahi". 
+4. 🧑‍🍳 Counter Staff (Next.js API Route): Grabs it from the hot plate / back 🗄️ pantry (PostgreSQL), puts it on your tray immediately. If it were a habachi grill, they'd cook it for you immediately.
 5. 👤 You: Walk away with your food. Done!
 ```
+
+Here, `Next.js` represents pretty much the entire restuarant, whereas `React.js` represented more of just the dining room. This is also why sometimes `Next.js` projects don't need `Express.js` at all because it sometimes calls `Node.js` under the hood. The kitchen is not hidden in the back (a seperate host) but it's right behind the counter.
 
 #### How Does our Web Application All Relate in a MERN Application?
 ```mermaid

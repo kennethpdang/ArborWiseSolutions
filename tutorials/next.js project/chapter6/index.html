@@ -1,0 +1,33 @@
+<html>
+	<body>
+		<div id="app"></div>
+		<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script type="text/jsx">
+            function Header(props) {
+                return <h1>{ props.title }</h1>;
+            }
+            
+            function HomePage() {
+                const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+                
+                return (
+                    <div>
+                        <Header title="Develop. Preview. Ship." />
+                        <ul>
+                            {names.map((name) => (
+                                <li key={name}>{name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                );
+            }
+            
+            const root = ReactDOM.createRoot(app);
+            root.render(<HomePage />);
+		</script>
+	</body>
+</html>
+
+<!-- This is an example of props. We are passing props into the Header component. Also what map does is it takes an array and returns a new array with a transformation applied to each element. In this case, we are mapping over the names array and returning a list item for each name. -->
