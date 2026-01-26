@@ -119,6 +119,9 @@ createApp(App)
 ```
 
 #### How Do They All Relate?
+<hr>
+
+The diagram below is an easy way for us to see how modules, packages, libraries, and frameworks relate to one another. 
 
 ```mermaid
 flowchart TB
@@ -178,6 +181,7 @@ flowchart TB
     style P_CMD fill:#064e3b,stroke:#10b981,color:#a7f3d0,rx:5,ry:5
     style M_CMD fill:#78350f,stroke:#f59e0b,color:#fde68a,rx:5,ry:5
 ```
+<hr>
 
 ### Javascript History, Runtime Environments, and Serverside Languages
 Traditionally speaking, Javascript could have only ran on the browser (via Google's V8 engine or Netscape's SpiderMonkey). However, what `Node.js` allows us to do is to run Javascript **outside** the browser. `Node.js` is a runtime environment (meaning that it can run Javascript **outside** the browser). This is important, because without a runtime environment like .NET Runtime (C#), `Node.js`/`Bun.js`/`Deno.js` (JS), Ruby Runtime (Ruby), or Python Runtime (Python), the browser **cannot** connect to a database. Databases have existed for a very long time and code could still connect to it, but they were often local code and not things from the browser.
@@ -293,6 +297,8 @@ app.listen(3000); // internally calls http.createServer()
 Becuase of `Express.js` we don't have to worry about all of the low level parsing.
 
 #### Why TCP Connection Instead of UDP?
+<hr>
+
 UDP has it's purposes, however for modern webpages TCP makes the best sense. We need a connection type that guarantees every package is awknowledge. If a packet is lost, you want it retransmitted so that there is no partial HTML missing from a page. And you also want the packets to arrive in the right order. Here is a schematic explaining this:
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing':10}}}%%
@@ -343,6 +349,7 @@ flowchart LR
 
 However, there are some things UDP excels at: video games, streaming videos, VoIP...
 ⚠️ Also note: As of 2026, modern HTTP/3 uses a combination of UDP and TCP called QUIC.
+<hr>
 
 ### NNEP Technology Stack: A Kitchen Analogy for Web Development
 Our web application is like a kitchen. Using the context of the kitchen, we can make the following analogy (here instead of including `Next.js` we actually include `React.js`, but this will be explain in more detail later):
@@ -441,7 +448,15 @@ flowchart LR
 
 However, with `Next.js` you have the following:
 ```mermaid
-%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 50}}}%%
+%%{init: {
+  "flowchart": {
+    "rankSpacing": 5,
+    "nodeSpacing": 30,
+    "htmlLabels": false,
+    "padding": 6
+  }
+}}%%
+
 flowchart TB
     subgraph NEXTJS[" "]
         direction TB
@@ -514,7 +529,16 @@ flowchart TB
 
 A good analogy for `Next.js` would be a cafeteria styled restuarant as opposed to a traditional restuarant with waiters.
 
-The following diagram below can explain how the technologies relate to one another:
+The way things flow is something like:
+```
+1. 👤 Cutomer (Browser): Walk up to the cafeteria line
+2. 🍽️ Counter (React): See all the options displayed
+3. 👤 You: Point at the chicken karahi
+4. 🧑‍🍳 Counter Staff (API Route): Grabs it from the hot plate / back pantry 
+   (PostgreSQL), puts it on your tray immediately
+5. 👤 You: Walk away with your food. Done!
+```
+
 #### How Does our Web Application All Relate in a MERN Application?
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 40}}}%%
