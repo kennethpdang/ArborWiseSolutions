@@ -6,6 +6,7 @@ We learned.
 1. The benefit of <Image> component.
 2. Purpose of `layout` and `page` files. Layout shared between multiple pages. 
 3. The benefit of <Link> component compared to traditional <a> tags.
+4. Using React server components to fetch data on the server. 
 
 /
 ├── package.json  (your main project)
