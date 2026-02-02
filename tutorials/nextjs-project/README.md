@@ -8,6 +8,13 @@ We learned.
 3. The benefit of <Link> component compared to traditional <a> tags.
 4. Using React server components to fetch data on the server. 
 5. Parrallel data fetching instead of fetching one things after another.
+6. Data streaming (chapter 9) SIDE NAV can be static while dynamic content changes.
+7. lOADING.tsx and skeletons
+8. Overview Route Groups /dashboard/(overview)/page.tsx is just /dashboard the `()` don't get rendered in URL. You can stream an entire page or just individual components.
+9. Move data fetches down to components that need it.
+10. We understood debouncing to limit when a function fires (chapter 10).
+11. Clients and server components (fetching HTML on clients and fetching on server).
+
 
 /
 ├── package.json  (your main project)

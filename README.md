@@ -14,6 +14,19 @@ Prior to developing this application, I have no knowledge of Next.js or PostgreS
 Currently, we have two `Next.js` projects in this application and we are trying not to have them interfere with one another. The website for Arbor Wise Solution runs on `Next.js`, however the tutorials for `Next.js` are also running on `Next.js` as well. 
 
 Folder structure:
+```
+.
+├── build                   # Compiled files (alternatively `dist`)
+├── docs                    # Documentation files (alternatively `doc`)
+├── src                     # Source files (alternatively `lib` or `app`)
+├── test                    # Automated tests (alternatively `spec` or `tests`)
+├── tools                   # Tools and utilities
+├── LICENSE
+└── README.md
+```
 
 ## How To Test Things Out Locally:
 You can run this application locally using Docker Desktop. The way you would do this is that you would first clone this repository locally using. 
+
+## Things I learned about web dev:
+1. Organize as follows, lib for data, pages, ui for components on pages
