@@ -14,7 +14,8 @@ We learned.
 9. Move data fetches down to components that need it.
 10. We understood debouncing to limit when a function fires (chapter 10).
 11. Clients and server components (fetching HTML on clients and fetching on server).
-
+12. Server Actions Create Endpoints (When you do 'use server' and console.log() it logs it in your IDE/computer/server instead of on Chrome dev tools)
+13. How to create dynamic routes/slug routes using [id] or something similar. 
 
 /
 ├── package.json  (your main project)
