@@ -31,10 +31,10 @@ export default function NavigationBar() {
                     <Link href='/services' className='text-sm hover:underline'>
                         Services
                     </Link>
-                    <Link href='/' className='text-sm hover:underline'>
-                        Request
+                    <Link href='/qoute' className='text-sm hover:underline'>
+                        Qoute
                     </Link>
-                    <Link href='/' className='text-sm hover:underline'>
+                    <Link href='/about-us' className='text-sm hover:underline'>
                         About Us
                     </Link>
 				</nav>
