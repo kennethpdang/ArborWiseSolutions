@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function NavigationBar() {
 	return (
 		<header className='w-full px-6 py-3'>
-			<div className='flex items-center justify-between'>
+			<div className='relative flex items-center'>
 				<Link href='/' className='shrink-0'>
 					<Image 
 						src='/arbor-wise-solutions-logo.png'
@@ -19,15 +19,24 @@ export default function NavigationBar() {
                     src='/arbor-wise-solutions-wordmark.svg'
                     width={1156}
                     height={354}
-                    className='h-15 w-auto object-contain'
+                    className='h-15 w-auto object-contain pointer-events-none absolute left-1/2 -translate-x-1/2'
                     alt='Arbor Wise Solutions'
                     priority
                 />
 
-				<nav className='flex items-center gap-4'>
+				<nav className='ml-auto flex items-center gap-4'>
 					<Link href='/about' className='text-sm hover:underline'>
-						About
+						Blogs
 					</Link>
+                    <Link href='/services' className='text-sm hover:underline'>
+                        Services
+                    </Link>
+                    <Link href='/' className='text-sm hover:underline'>
+                        Request
+                    </Link>
+                    <Link href='/' className='text-sm hover:underline'>
+                        About Us
+                    </Link>
 				</nav>
 			</div>
 		</header>
