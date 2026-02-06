@@ -1,0 +1,89 @@
+<svg
+  class="branch-outline"
+  viewBox="0 0 1400 700"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <style>
+    .branch-outline { pointer-events: none; }
+    .branch-outline .stroke {
+      fill: none;
+      stroke: rgba(10, 60, 95, 0.85);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      /* draw animation (normalized via pathLength="1") */
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw 2.4s ease forwards;
+    }
+    .branch-outline .stroke.s2 { animation-delay: 0.15s; opacity: 0.75; }
+    .branch-outline .stroke.s3 { animation-delay: 0.30s; opacity: 0.65; }
+    .branch-outline .stroke.s4 { animation-delay: 0.45s; opacity: 0.60; }
+
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .branch-outline { animation: floaty 8s ease-in-out infinite; }
+      @keyframes floaty {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(6px); }
+      }
+    }
+  </style>
+
+  <!-- Main trunk -->
+  <path
+    pathLength="1"
+    class="stroke s1"
+    d="M 220 645
+       C 260 520, 360 445, 520 445
+       L 1080 445
+       C 1200 445, 1285 515, 1325 645"
+  />
+
+  <!-- Secondary parallel line -->
+  <path
+    pathLength="1"
+    class="stroke s2"
+    d="M 240 665
+       C 285 545, 380 475, 520 475
+       L 1060 475
+       C 1175 475, 1260 540, 1300 665"
+  />
+
+  <!-- Branches -->
+  <path
+    pathLength="1"
+    class="stroke s3"
+    d="M 560 455
+       C 540 385, 500 340, 440 305
+       C 405 285, 380 260, 360 225"
+  />
+
+  <path
+    pathLength="1"
+    class="stroke s3"
+    d="M 660 452
+       C 650 395, 635 360, 600 330
+       C 570 305, 545 280, 530 250"
+  />
+
+  <path
+    pathLength="1"
+    class="stroke s4"
+    d="M 780 460
+       C 785 405, 800 365, 835 332
+       C 875 295, 900 265, 915 235"
+  />
+
+  <path
+    pathLength="1"
+    class="stroke s4"
+    d="M 940 470
+       C 970 410, 1015 370, 1080 340
+       C 1130 318, 1160 290, 1185 255"
+  />
+</svg>

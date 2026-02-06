@@ -14,6 +14,7 @@ export default function Home() {
                     playsInline 
                     preload='auto' 
                 />
+				<h2> Our mission is to provide excellent tree care and service to our customers in a safe and happy environment for our team. </h2>
 			</main>
 		</div>
 	);
