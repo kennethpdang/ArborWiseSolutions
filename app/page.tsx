@@ -4,7 +4,9 @@ export default function Home() {
 	return (
 		<div className='flex items-center justify-center bg-zinc-50 font-sans dark:bg-black'>
 			<main className='relative w-full overflow-hidden'>
-				{/* Hero Video / Section */}
+				{/* Hero Video / Section 
+					TODO: THE SVG TAKES TOO LONG TO LOAD AND SOMETIMES THE FALLBACK IMAGE LOADS BEFORE SVG LOADS.
+				*/}
 				<section className='relative min-h-[500px] h-[115vh] max-h-[1500px] overflow-hidden'>
 					<Image
 						src='/hero-fallback.jpg'
@@ -28,8 +30,12 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
-				<section id='mission-statement'>
-					<h1> Providing Excellent Tree Service </h1>
+				
+				<section id='mission-statement' className='min-h-[150px] h-[20vh] max-h-[1500px]'>
+					<h1 className='text-mission font-bold'> Our mission is to provide excellent tree care and service to our customers in a safe and happy environment for our team. </h1>
+				</section>
+
+				<section id='services' className='min-h-[150px] h-[20vh] max-h-[1500px]'>
 				</section>
 			</main>
 		</div>
