@@ -4,7 +4,7 @@ import DesktopNav from '@/app/ui/common/navigation/DesktopNav';
 
 export default function NavigationBar() {
 	return (
-		<header className='w-full px-6 py-3'>
+		<header className='h-[84px] w-full px-6 py-3'>
 			<div className='relative flex items-center'>
 				<Link href='/' className='shrink-0'>
 					<Image 
