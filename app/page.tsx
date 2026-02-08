@@ -7,19 +7,11 @@ export default function Home() {
 				{/* Hero Video / Section 
 					TODO: THE SVG TAKES TOO LONG TO LOAD AND SOMETIMES THE FALLBACK IMAGE LOADS BEFORE SVG LOADS.
 				*/}
-				<section className='relative min-h-[500px] h-[115vh] max-h-[1500px] overflow-hidden'>
+				<section className='relative min-h-[500px] h-[calc(100vh-54px)] max-h-[1500px] overflow-hidden'>
 					<Image
 						src='/hero-fallback.jpg'
 						alt='Fall back picture for hero-video.'
 						className='object-cover'
-						priority
-						fill
-					/>
-
-					<Image
-						src='/vine.svg'
-						alt='Fall back picture for hero-video.'
-						className='object-cover object-bottom'
 						priority
 						fill
 					/>
