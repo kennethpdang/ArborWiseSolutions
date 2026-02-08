@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
+	--background: #000;
+	--foreground: #ededed;
 }
 
 @theme inline {
@@ -17,13 +17,6 @@
 	--text-intro--line-height: 0.95;
 	--text-mission: clamp(28px, 5vw, 36px);
 	--text-mission--line-height: 0.95;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #000;
-		--foreground: #ededed;
-	}
 }
 
 body {

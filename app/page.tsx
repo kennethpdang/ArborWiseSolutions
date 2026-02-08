@@ -10,7 +10,7 @@ export default function Home() {
 				<section className='relative min-h-[500px] h-[calc(100vh-54px)] max-h-[1500px] overflow-hidden'>
 					<Image
 						src='/hero-fallback.jpg'
-						alt='Fall back picture for hero-video.'
+						alt='Fall back picture for hero-video 2.'
 						className='object-cover'
 						priority
 						fill
