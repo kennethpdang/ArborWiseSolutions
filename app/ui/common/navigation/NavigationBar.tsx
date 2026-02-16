@@ -5,7 +5,7 @@ import MobileNav from '@/app/ui/common/navigation/MobileNav';
 
 export default function NavigationBar() {
 	return (
-		<header className='h-14 w-full px-6 py-2'>
+		<header className='fixed top-0 left-0 z-50 h-14 w-full px-6 py-2 dark:bg-black'>
 			<div className='relative flex items-center'>
 				<Link href='/' className='shrink-0'>
 					<Image 
