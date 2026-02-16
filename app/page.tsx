@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {
 	WrenchScrewdriverIcon,
 	CalendarDaysIcon,
 	BanknotesIcon,
+	BuildingStorefrontIcon
 } from '@heroicons/react/24/outline';
 
 export default function Home() {
@@ -16,16 +18,13 @@ export default function Home() {
 					Excellence. Integrity. Honesty.
 				</h2>
 				<div className="mt-2 mb-6 md:mb-8 flex flex-wrap justify-center gap-3">
-					<div className="mt-2 mb-6 md:mb-8 flex flex-wrap justify-center gap-3">
-						<a href="/quote" className="inline-flex items-center justify-center rounded-full border border-[#58761B]/70 bg-[#0B140D]/60 px-6 py-3 text-sm md:text-base font-semibold text-[#CFE3B5] shadow-sm backdrop-blur transition hover:border-[#58761B] hover:bg-[#0B140D]/80 hover:text-white hover:shadow-[0_0_0_3px_rgba(88,118,27,0.18)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58761B] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-							Schedule Estimate
-						</a>
-					</div>
-					<div className="mt-2 mb-6 md:mb-8 flex flex-wrap justify-center gap-3">
-						<a href="/quote" className="inline-flex items-center justify-center rounded-full border border-[#D99201]/70 bg-[#1A1000]/60 px-6 py-3 text-sm md:text-base font-semibold text-[#F5D580] shadow-sm backdrop-blur transition hover:border-[#D99201] hover:bg-[#1A1000]/80 hover:text-white hover:shadow-[0_0_0_3px_rgba(217,146,1,0.18)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D99201] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-							Market
-						</a>
-					</div>
+					<Link href="/quote" className="inline-flex items-center justify-center rounded-full border border-[#58761B]/70 bg-[#0B140D]/60 px-6 py-3 text-sm md:text-base font-semibold text-[#CFE3B5] shadow-sm backdrop-blur transition hover:border-[#58761B] hover:bg-[#0B140D]/80 hover:text-white hover:shadow-[0_0_0_3px_rgba(88,118,27,0.18)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58761B] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+						Schedule Estimate
+					</Link>
+					<Link href="/market" className="inline-flex items-center gap-2 justify-center rounded-full border border-[#D99201]/70 bg-[#1A1000]/60 px-6 py-3 text-sm md:text-base font-semibold text-[#F5D580] shadow-sm backdrop-blur transition hover:border-[#D99201] hover:bg-[#1A1000]/80 hover:text-white hover:shadow-[0_0_0_3px_rgba(217,146,1,0.18)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D99201] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+						<BuildingStorefrontIcon className="h-5 w-5" />
+						Market
+					</Link>
 				</div>
 				<div className="relative w-full md:w-[85%] aspect-video overflow-hidden rounded-2xl md:rounded-3xl">
 					<Image
