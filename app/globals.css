@@ -17,8 +17,12 @@
 	--text-prominent-1--line-height: 0.95;
 	--text-prominent-2: clamp(36px, 5vw, 56px);
 	--text-prominent-2--line-height: 0.95;
-	--text-prominent-3: clamp(28px, 5vw, 36px);
+	--text-prominent-3: clamp(32px, 4vw, 44px);
 	--text-prominent-3--line-height: 0.95;
+	--text-prominent-4: clamp(28px, 5vw, 36px);
+	--text-prominent-4--line-height: 0.95;
+	--text-prominent-5: clamp(22px, 3vw, 28px);
+	--text-prominent-5--line-height: 1.05;
 }
 
 body {
