@@ -1,0 +1,27 @@
+<section id='hero' className='flex flex-col items-center px-4 mt-14'>
+	<h1 className="mt-4 md:mt-6 py-4 md:py-6 text-center text-prominent-2 md:text-prominent-1 font-bold tracking-tight leading-[1.05] bg-gradient-to-r from-[#58761B] via-[#D99201] to-[#905A01] bg-clip-text text-transparent">
+		An arborist company servicing the South East Houston area.
+	</h1>
+	<h2 className="my-4 md:my-5 text-prominent-3 md:text-prominent-2 font-semibold tracking-tight leading-tight text-[#CFE3B5]">
+		Excellence. Integrity. Honesty.
+	</h2>
+	<div className="mt-2 mb-6 md:mb-8 flex flex-wrap justify-center gap-3">
+		<a href="/quote" className="inline-flex items-center justify-center rounded-full border border-[#58761B]/70 bg-[#0B140D]/60 px-6 py-3 text-sm md:text-base font-semibold text-[#CFE3B5] shadow-sm backdrop-blur transition hover:border-[#58761B] hover:bg-[#0B140D]/80 hover:text-white hover:shadow-[0_0_0_3px_rgba(88,118,27,0.18)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58761B] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+			Schedule Estimate
+		</a>
+	</div>
+	<div className="mt-2 mb-6 md:mb-8 flex flex-wrap justify-center gap-3">
+		<a href="/quote" className="inline-flex items-center justify-center rounded-full border border-[#D99201]/70 bg-[#1A1000]/60 px-6 py-3 text-sm md:text-base font-semibold text-[#F5D580] shadow-sm backdrop-blur transition hover:border-[#D99201] hover:bg-[#1A1000]/80 hover:text-white hover:shadow-[0_0_0_3px_rgba(217,146,1,0.18)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D99201] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+			Market
+		</a>
+	</div>
+	<div className="relative w-full md:w-[85%] aspect-video overflow-hidden rounded-2xl md:rounded-3xl">
+		<Image
+			src='/hero-fallback.jpg'
+			alt='Arborist team at work in South East Houston.'
+			className='object-cover'
+			priority
+			fill
+		/>
+	</div>
+</section>
