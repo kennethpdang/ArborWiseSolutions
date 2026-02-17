@@ -77,7 +77,7 @@ export default function Home() {
 					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
 						{[
 							{
-								src: '/blog-image-one.png',
+								src: '/blog-image-six.png',
 								title: 'The Importance of Seasonal Tree Pruning',
 								excerpt:
 									'Learn why pruning your trees at the right time of year makes all the difference for their health and longevity.',
@@ -89,7 +89,7 @@ export default function Home() {
 									'How proactive tree care can protect your property during Houston\'s unpredictable storm season.',
 							},
 							{
-								src: '/blog-image-three.png',
+								src: '/blog-image-five.png',
 								title: 'Choosing the Right Trees for Your Yard',
 								excerpt:
 									'A guide to selecting species that thrive in the South East Houston climate and soil.',
@@ -124,6 +124,9 @@ export default function Home() {
 
 			<section id='process' />
 			<section id='values' />
+			<section id='testimonials' />
+			{/* Maybe include disclaimer about filtered testimonials. */}
+			<section id='' />
 		</main>
 	);
 }
