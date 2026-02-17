@@ -66,7 +66,62 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section id='blogs' className='min-h-[150px] h-[20vh] max-h-[1500px]' />
+			<section id='blogs' className='px-4 py-12 md:py-20'>
+				<div className='mx-auto w-full md:w-[85%]'>
+					<p className='text-sm font-semibold uppercase tracking-widest text-white/40'>
+						From the Blog
+					</p>
+					<h3 className='mt-4 mb-10 text-prominent-3 md:text-prominent-2 font-bold tracking-tight text-white'>
+						Latest Updates
+					</h3>
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+						{[
+							{
+								src: '/blog-image-one.png',
+								title: 'The Importance of Seasonal Tree Pruning',
+								excerpt:
+									'Learn why pruning your trees at the right time of year makes all the difference for their health and longevity.',
+							},
+							{
+								src: '/blog-image-two.png',
+								title: 'Storm Damage Prevention Tips',
+								excerpt:
+									'How proactive tree care can protect your property during Houston\'s unpredictable storm season.',
+							},
+							{
+								src: '/blog-image-three.png',
+								title: 'Choosing the Right Trees for Your Yard',
+								excerpt:
+									'A guide to selecting species that thrive in the South East Houston climate and soil.',
+							},
+						].map((blog) => (
+							<Link
+								key={blog.title}
+								href='#'
+								className='group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition hover:border-[#58761B]/50 hover:bg-white/[0.07]'
+							>
+								<div className='relative aspect-[16/10] w-full overflow-hidden'>
+									<Image
+										src={blog.src}
+										alt={blog.title}
+										fill
+										className='object-cover transition duration-300 group-hover:scale-105'
+									/>
+								</div>
+								<div className='flex flex-1 flex-col gap-2 px-5 py-5'>
+									<h4 className='text-base md:text-lg font-semibold leading-snug text-white group-hover:text-[#CFE3B5] transition'>
+										{blog.title}
+									</h4>
+									<p className='text-sm leading-relaxed text-white/50'>
+										{blog.excerpt}
+									</p>
+								</div>
+							</Link>
+						))}
+					</div>
+				</div>
+			</section>
+
 			<section id='process' />
 			<section id='values' />
 		</main>

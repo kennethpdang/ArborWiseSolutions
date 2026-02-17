@@ -12,7 +12,7 @@ export default function DesktopNav({ className }: {className?: string}) {
 				<TruckIcon className='shrink-0 h-5 w-5'/>
 				Services
 			</Link>
-			<Link href='/qoute' className='inline-flex whitespace-nowrap text-white items-center gap-2 text-sm hover:underline'>
+			<Link href='/quote' className='inline-flex whitespace-nowrap text-white items-center gap-2 text-sm hover:underline'>
 				<CalculatorIcon className='shrink-0 h-5 w-5'/>
 				Qoute
 			</Link>
