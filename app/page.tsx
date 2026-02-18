@@ -14,7 +14,7 @@ export default function Home() {
 				<h1 className="mt-4 md:mt-6 py-4 md:py-6 text-center text-prominent-2 md:text-prominent-1 font-bold tracking-tight leading-[1.05] bg-gradient-to-r from-[#58761B] via-[#D99201] to-[#905A01] bg-clip-text text-transparent">
 					An arborist company servicing the South East Houston area.
 				</h1>
-				<h2 className="my-4 md:my-5 text-prominent-3 md:text-prominent-2 font-semibold tracking-tight leading-tight text-[#CFE3B5]">
+				<h2 className="my-4 md:my-5 text-center text-prominent-3 md:text-prominent-2 font-semibold tracking-tight leading-tight text-[#CFE3B5]">
 					Excellence. Integrity. Honesty.
 				</h2>
 				<div className="mt-2 mb-6 md:mb-8 flex flex-wrap justify-center gap-3">

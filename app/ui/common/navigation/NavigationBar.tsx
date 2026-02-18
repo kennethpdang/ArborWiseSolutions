@@ -26,7 +26,7 @@ export default function NavigationBar() {
 					priority
 				/>
 
-				<MobileNav className='flex xl:hidden' />
+				<MobileNav className='ml-auto flex xl:hidden' />
 				<DesktopNav className='hidden xl:flex ml-auto' />
 			</div>
 		</header>
