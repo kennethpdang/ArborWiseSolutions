@@ -7,6 +7,58 @@ import {
 	BuildingStorefrontIcon
 } from '@heroicons/react/24/outline';
 
+const testimonials = [
+	{
+		name: 'Marcus T.',
+		location: 'Pearland, TX',
+		text: 'They removed a massive dead oak that two other companies refused to touch. Clean work, fair price, and done in half the time I expected.',
+	},
+	{
+		name: 'Sandra & Jim W.',
+		location: 'Friendswood, TX',
+		text: 'Our backyard looks completely different. The crew was polite, careful around our fence, and left the yard spotless.',
+	},
+	{
+		name: 'David R.',
+		location: 'League City, TX',
+		text: 'Ive used them three times now — pruning, stump grinding, and emergency storm cleanup. Consistent quality every single time.',
+	},
+	{
+		name: 'Angela M.',
+		location: 'Pasadena, TX',
+		text: 'Called on a Monday, got an estimate Tuesday, work done Thursday. That kind of responsiveness is rare. Highly recommend.',
+	},
+	{
+		name: 'Carlos G.',
+		location: 'Deer Park, TX',
+		text: 'They talked me out of removing a tree that just needed proper trimming. Saved me money and the tree looks great. Real integrity.',
+	},
+	{
+		name: 'Patricia L.',
+		location: 'South Houston, TX',
+		text: 'After Hurricane Beryl, they were one of the only crews answering phones. Came out within 48 hours and handled everything.',
+	},
+];
+
+function TestimonialCard({ name, location, text }: { name: string; location: string; text: string }) {
+	return (
+		<div className='flex-shrink-0 w-[320px] md:w-[380px] rounded-2xl border border-white/10 bg-white/5 px-6 py-6'>
+			<p className='text-sm md:text-[15px] leading-relaxed text-white/60'>
+				&ldquo;{text}&rdquo;
+			</p>
+			<div className='mt-4 flex items-center gap-3'>
+				<div className='h-8 w-8 rounded-full bg-[#58761B]/30 flex items-center justify-center'>
+					<span className='text-xs font-bold text-[#CFE3B5]'>{name.charAt(0)}</span>
+				</div>
+				<div>
+					<p className='text-sm font-semibold text-white'>{name}</p>
+					<p className='text-xs text-white/40'>{location}</p>
+				</div>
+			</div>
+		</div>
+	);
+}
+
 export default function Home() {
 	return (
 		<main className='bg-black font-sans'>
@@ -63,6 +115,61 @@ export default function Home() {
 					<h3 className='mt-4 text-prominent-3 md:text-prominent-3 font-bold leading-tight tracking-tight text-white'>
 						To provide excellent tree care and service to our customers in a safe and happy environment for our team.
 					</h3>
+				</div>
+			</section>
+
+			<section id='testimonials' className='py-12 md:py-20'>
+				<div className='mx-auto w-full md:w-[85%] px-4 mb-10'>
+					<p className='text-sm font-semibold uppercase tracking-widest text-white/40'>
+						Testimonials
+					</p>
+					<h3 className='mt-4 text-prominent-3 md:text-prominent-2 font-bold tracking-tight text-white'>
+						What Our Customers Say
+					</h3>
+					<details className='mt-4 group'>
+						<summary className='inline-flex cursor-pointer items-center gap-1.5 text-sm text-white/40 transition hover:text-white/60 list-none [&::-webkit-details-marker]:hidden'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								viewBox='0 0 20 20'
+								fill='currentColor'
+								className='h-4 w-4 transition-transform group-open:rotate-180'
+							>
+								<path
+									fillRule='evenodd'
+									d='M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z'
+									clipRule='evenodd'
+								/>
+							</svg>
+							Disclaimer
+						</summary>
+						<p className='mt-2 max-w-prose text-sm leading-relaxed text-white/40'>
+							As Christians, we don&apos;t want to be deceitful. These are pulled in with an API from our Google listings and we&apos;ve hand-selected the best ones. To see a full list, view our{' '}
+							<a
+								href='#'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='underline underline-offset-2 text-white/60 transition hover:text-white'
+							>
+								Google listing
+							</a>.
+						</p>
+					</details>
+				</div>
+
+				{/* Marquee container with edge fade masks */}
+				<div
+					className='relative overflow-hidden'
+					style={{
+						maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+						WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+					}}
+				>
+					{/* Sliding track — duplicated for seamless loop */}
+					<div className='flex gap-5 animate-marquee w-max'>
+						{[...testimonials, ...testimonials].map((t, i) => (
+							<TestimonialCard key={`${t.name}-${i}`} {...t} />
+						))}
+					</div>
 				</div>
 			</section>
 
@@ -124,9 +231,6 @@ export default function Home() {
 
 			<section id='process' />
 			<section id='values' />
-			<section id='testimonials' />
-			{/* Maybe include disclaimer about filtered testimonials. */}
-			<section id='' />
 		</main>
 	);
 }
