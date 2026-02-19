@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import ChainsawScene from '@/app/components/ChainsawSceneLoader';
 import {
 	WrenchScrewdriverIcon,
 	CalendarDaysIcon,
@@ -21,7 +22,7 @@ const testimonials = [
 	{
 		name: 'David R.',
 		location: 'League City, TX',
-		text: 'Ive used them three times now — pruning, stump grinding, and emergency storm cleanup. Consistent quality every single time.',
+		text: 'Ive used them three times now â€" pruning, stump grinding, and emergency storm cleanup. Consistent quality every single time.',
 	},
 	{
 		name: 'Angela M.',
@@ -37,6 +38,29 @@ const testimonials = [
 		name: 'Patricia L.',
 		location: 'South Houston, TX',
 		text: 'After Hurricane Beryl, they were one of the only crews answering phones. Came out within 48 hours and handled everything.',
+	},
+];
+
+const values = [
+	{
+		title: 'Safety First',
+		description:
+			'Every job starts with a safety plan. Our crew follows ISA standards and uses professional-grade gear — because cutting corners puts people at risk.',
+	},
+	{
+		title: 'Honest Pricing',
+		description:
+			'We quote what the job actually costs. No hidden fees, no upsells, no surprise line items after the work is done.',
+	},
+	{
+		title: 'Quality Craftsmanship',
+		description:
+			'Trees are living things that deserve skilled hands. We prune with purpose, remove with precision, and leave your property cleaner than we found it.',
+	},
+	{
+		title: 'Community Roots',
+		description:
+			'We live in the neighborhoods we serve. South East Houston is home — and we treat every yard like our own.',
 	},
 ];
 
@@ -173,6 +197,46 @@ export default function Home() {
 				</div>
 			</section>
 
+			{/* ────────── VALUES + HALFTONE CHAINSAW ────────── */}
+			<section id='values' className='relative px-4 py-20 md:py-32 overflow-hidden'>
+				{/* Chainsaw — full-bleed background filling the entire section */}
+				<div className='absolute inset-0 pointer-events-none' aria-hidden='true'>
+					<div className='absolute inset-0 bg-[#D99201]/[0.03] blur-3xl' />
+					<ChainsawScene className='absolute inset-0 w-full h-full' sectionId='values' />
+				</div>
+
+				{/* Text content — sits on top */}
+				<div className='mx-auto w-full md:w-[85%] relative z-10'>
+					<div className='ml-auto max-w-xl'>
+					<p className='text-sm font-semibold uppercase tracking-widest text-white/40'>
+						{'{ Our Values }'}
+					</p>
+					<h3 className='mt-4 mb-10 text-prominent-3 md:text-prominent-2 font-bold tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]'>
+						What We Stand For
+					</h3>
+
+					<div className='space-y-6'>
+						{values.map((v, i) => (
+							<div key={v.title} className='group flex gap-5 rounded-2xl bg-black/60 backdrop-blur-md border border-white/[0.06] px-5 py-5'>
+								{/* Index pill */}
+								<span className='mt-1 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#D99201]/40 text-xs font-bold text-[#D99201]'>
+									{String(i + 1).padStart(2, '0')}
+								</span>
+								<div>
+									<h4 className='text-base md:text-lg font-semibold text-white'>
+										{v.title}
+									</h4>
+									<p className='mt-1.5 text-sm leading-relaxed text-white/50'>
+										{v.description}
+									</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				</div>
+			</section>
+
 			<section id='blogs' className='px-4 py-12 md:py-20'>
 				<div className='mx-auto w-full md:w-[85%]'>
 					<p className='text-sm font-semibold uppercase tracking-widest text-white/40'>
@@ -228,9 +292,6 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
-			<section id='process' />
-			<section id='values' />
 		</main>
 	);
 }

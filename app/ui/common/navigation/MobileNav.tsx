@@ -7,7 +7,7 @@ import { useState } from 'react';
 const links = [
 	{ href: '/blogs', label: 'Blogs', icon: ChatBubbleBottomCenterIcon },
 	{ href: '/services', label: 'Services', icon: TruckIcon },
-	{ href: '/qoute', label: 'Qoute', icon: CalculatorIcon },
+	{ href: '/qoute', label: 'Quote', icon: CalculatorIcon },
 	{ href: '/about-us', label: 'About Us', icon: UserGroupIcon },
 	{ href: '/store', label: 'Store', icon: ShoppingBagIcon }
 ];
